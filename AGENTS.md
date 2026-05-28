@@ -8,28 +8,27 @@
 
 ## TL;DR — O Essencial em 30 Segundos
 
-**O que é**: [DESCRICAO_PROJETO: ex: API de gestão de benefícios alimentação/refeição
-para empresas brasileiras] — produto regulado da Edenred Ticket Brasil.
+**O que é**: API de gestão de benefícios alimentação e refeição para empresas brasileiras — produto regulado da Edenred Ticket Brasil.
 
-**Stack**: TypeScript + Node.js + [FRAMEWORK: ex: NestJS / Express / Next.js] +
-[DB_PRINCIPAL: ex: PostgreSQL] + [CACHE: ex: Redis]
+**Stack**: TypeScript + Node.js + NestJS +
+PostgreSQL + Redis
 
 **Regras mais importantes**:
 
 - 🔒 Nunca commitar secrets, `.env` real, certificados ou dados de produção
 - 👤 PII/LGPD: CPF, dados de beneficiários e saldos nunca em logs, fixtures ou código
-- 🌿 Sempre branch + PR — nunca push direto em `[BRANCH_PRINCIPAL: ex: main]`
+- 🌿 Sempre branch + PR — nunca push direto em `main`
 - 🔍 Mudanças em auth, benefício, saldo, elegibilidade → revisão humana obrigatória
 - ⚡ Menor diff que resolve o problema — não reescrever arquitetura para bug local
 
 **Comandos rápidos**:
 
 ```bash
-[INSTALL_CMD: ex: npm install]    # instalar dependências
-[DEV_CMD: ex: npm run dev]        # rodar em desenvolvimento
-[TEST_CMD: ex: npm test]          # rodar testes
-[LINT_CMD: ex: npm run lint]      # verificar estilo de código
-[BUILD_CMD: ex: npm run build]    # build de produção
+npm install    # instalar dependências
+npm run dev        # rodar em desenvolvimento
+npm test          # rodar testes
+npm run lint      # verificar estilo de código
+npm run build    # build de produção
 ```
 
 **Nunca fazer**:
@@ -71,27 +70,27 @@ O agente deve:
 
 ```bash
 # Dependências
-[INSTALL_CMD: ex: npm install]
+npm install
 
 # Desenvolvimento
-[DEV_CMD: ex: npm run dev]
+npm run dev
 
 # Build
-[BUILD_CMD: ex: npm run build]
+npm run build
 
 # Testes
-[TEST_CMD: ex: npm test]
-[TEST_CMD: ex: npm test] -- --watch          # modo watch
-[TEST_CMD: ex: npm test] -- --coverage       # com cobertura
+npm test
+npm test -- --watch          # modo watch
+npm test -- --coverage       # com cobertura
 
 # Qualidade
-[LINT_CMD: ex: npm run lint]
-[LINT_CMD: ex: npm run lint] -- --fix        # auto-fix
-[TYPECHECK_CMD: ex: npm run typecheck]       # verificar tipos TypeScript
+npm run lint
+npm run lint -- --fix        # auto-fix
+npm run typecheck       # verificar tipos TypeScript
 
 # Banco de dados
-[MIGRATE_CMD: ex: npm run migrate]           # rodar migrations pendentes
-[MIGRATE_CMD: ex: npm run migrate:status]    # ver status das migrations
+npm run db:migrate           # rodar migrations pendentes
+npm run db:migrate:status    # ver status das migrations
 ```
 
 ---
@@ -112,7 +111,7 @@ O agente deve:
 
 - Qualquer mudança em módulos de autenticação ou autorização
 - Lógica de cálculo de saldo, crédito ou elegibilidade de benefício
-- Integrações com [AUTH_PROVIDER: ex: Keycloak] ou provedores de identidade
+- Integrações com Keycloak ou provedores de identidade
 - Alterações em roles, permissões ou políticas de acesso
 - Qualquer código que processe dados de cartão ou transação financeira
 
@@ -127,11 +126,11 @@ chore/atualizar-dependencias
 hotfix/TICKET-789-descricao-critica
 ```
 
-**Branches protegidas**: `[BRANCHES_PROTEGIDAS: ex: main, staging, production]`
+**Branches protegidas**: `main, staging, production`
 
 - Nunca push direto em branch protegida
 - Nunca force-push em branch protegida
-- Branches de feature devem partir de `[BRANCH_PRINCIPAL: ex: main]` atualizado
+- Branches de feature devem partir de `main` atualizado
 
 ### Pull Requests
 
@@ -142,7 +141,7 @@ Todo PR precisa ter:
 - Descrição com: o que muda, por que muda, como testar
 - Testes cobrindo o caminho feliz e pelo menos um caso de erro
 - Lint e typecheck passando
-- Sem conflitos com `[BRANCH_PRINCIPAL: ex: main]`
+- Sem conflitos com `main`
 
 Escalar para revisão humana quando:
 
@@ -166,15 +165,15 @@ Escalar para revisão humana quando:
 ```text
 .
 ├── src/
-│   ├── [MODULO_PRINCIPAL: ex: modules/]     # módulos de domínio
-│   │   ├── [MODULO_AUTH: ex: auth/]         # autenticação e autorização
-│   │   ├── [MODULO_BENEFICIO: ex: benefit/] # lógica de benefícios
-│   │   └── [MODULO_USUARIO: ex: user/]      # gestão de usuários
-│   ├── [CONFIG_DIR: ex: config/]            # configurações da aplicação
-│   ├── [SHARED_DIR: ex: shared/]            # utilitários e tipos compartilhados
-│   └── [MAIN_FILE: ex: main.ts]             # entrypoint
-├── [TEST_DIR: ex: test/]                    # testes de integração e e2e
-├── [MIGRATIONS_DIR: ex: migrations/]        # migrations de banco de dados
+│   ├── modules/     # módulos de domínio
+│   │   ├── auth/         # autenticação e autorização
+│   │   ├── benefits/ # lógica de benefícios
+│   │   └── users/      # gestão de usuários
+│   ├── config/            # configurações da aplicação
+│   ├── shared/            # utilitários e tipos compartilhados
+│   └── main.ts             # entrypoint
+├── test/                    # testes de integração e e2e
+├── migrations/        # migrations de banco de dados
 ├── .github/
 │   └── workflows/                           # CI/CD — não editar sem aprovação
 ├── .env.example                             # template de variáveis (sem valores reais)
@@ -190,13 +189,13 @@ Escalar para revisão humana quando:
 
 | Serviço | Tipo | Placeholder | Impacto se cair |
 |---|---|---|---|
-| [DB_PRINCIPAL: ex: PostgreSQL] | Banco principal | `[DB_URL: ex: DATABASE_URL]` | Aplicação indisponível |
-| [CACHE: ex: Redis] | Cache / sessões | `[CACHE_URL: ex: REDIS_URL]` | Performance degradada / sessões perdidas |
-| [FILA: ex: AWS SQS] | Fila de mensagens | `[QUEUE_URL: ex: SQS_QUEUE_URL]` | Processamento assíncrono parado |
-| [AUTH_PROVIDER: ex: Keycloak] | Autenticação | `[AUTH_URL: ex: KEYCLOAK_URL]` | Login indisponível |
-| [FEATURE_FLAGS: ex: LaunchDarkly] | Feature flags | `[FLAGS_KEY: ex: LD_SDK_KEY]` | Features em estado padrão |
-| [OBSERVABILIDADE_LOGS: ex: Datadog] | Logs / APM | `[OBS_KEY: ex: DD_API_KEY]` | Sem observabilidade |
-| [SECRETS_MANAGER: ex: AWS Secrets Manager] | Secrets | `[SECRETS_ARN: ex: SECRET_ARN]` | Aplicação não inicia |
+| PostgreSQL | Banco principal | `DATABASE_URL` | Aplicação indisponível |
+| Redis | Cache / sessões | `REDIS_URL` | Performance degradada / sessões perdidas |
+| AWS SQS | Fila de mensagens | `SQS_QUEUE_URL` | Processamento assíncrono parado |
+| Keycloak | Autenticação | `KEYCLOAK_URL` | Login indisponível |
+| LaunchDarkly | Feature flags | `LD_SDK_KEY` | Features em estado padrão |
+| Datadog | Logs / APM | `DD_API_KEY` | Sem observabilidade |
+| AWS Secrets Manager | Secrets | `SECRET_ARN` | Aplicação não inicia |
 
 ---
 
@@ -204,9 +203,9 @@ Escalar para revisão humana quando:
 
 Antes de abrir o PR, confirme:
 
-- [ ] `[LINT_CMD: ex: npm run lint]` passa sem erros
-- [ ] `[TYPECHECK_CMD: ex: npm run typecheck]` passa sem erros
-- [ ] `[TEST_CMD: ex: npm test]` passa — sem testes removidos ou pulados
+- [ ] `npm run lint` passa sem erros
+- [ ] `npm run typecheck` passa sem erros
+- [ ] `npm test` passa — sem testes removidos ou pulados
 - [ ] Nenhum `console.log`, `debugger` ou `TODO` esquecido no diff
 - [ ] Nenhum dado real (CPF, email, saldo) em fixtures ou testes
 - [ ] Nenhum secret ou credencial no código ou histórico de commits
@@ -220,15 +219,15 @@ Antes de abrir o PR, confirme:
 ## 🐛 Troubleshooting Rápido
 
 **Testes falhando com erro de conexão ao banco**
-→ Verifique se o banco de testes está rodando e se `[DB_URL: ex: DATABASE_URL]`
+→ Verifique se o banco de testes está rodando e se `DATABASE_URL`
 aponta para o ambiente correto.
 
 **TypeScript reclamando de tipos após pull**
-→ Rode `[INSTALL_CMD: ex: npm install]` — pode ter dependência nova. Depois
-`[TYPECHECK_CMD: ex: npm run typecheck]`.
+→ Rode `npm install` — pode ter dependência nova. Depois
+`npm run typecheck`.
 
 **Migration falha com "column already exists"**
-→ Verifique `[MIGRATE_CMD: ex: npm run migrate:status]`. A migration pode ter
+→ Verifique `npm run db:migrate:status`. A migration pode ter
 rodado parcialmente. Não edite migration já aplicada — crie uma nova.
 
 **Lint falha só na CI, passa local**
@@ -244,8 +243,8 @@ adicionada sem atualizar o exemplo.
 `.github/CODEOWNERS` — não tente contornar.
 
 **Cache retornando dados desatualizados em dev**
-→ Limpe o cache: `[CACHE_FLUSH_CMD: ex: npm run cache:flush]` ou reinicie o
-[CACHE: ex: Redis] local.
+→ Limpe o cache: `npm run cache:flush` ou reinicie o
+Redis local.
 
 ---
 

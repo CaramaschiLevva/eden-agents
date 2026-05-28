@@ -25,17 +25,17 @@ Simples assim. O resto deste guia detalha cada passo.
 
 | Ferramenta | Versão mínima |
 |------------|---------------|
-| Node.js    | [NODE_VERSION: ex: 20.x] |
-| npm        | [NPM_VERSION: ex: 10.x] |
-| pnpm       | [PNPM_VERSION: ex: 9.x] (opcional) |
+| Node.js    | 20.x |
+| npm        | 10.x |
+| pnpm       | 9.x (opcional) |
 | Git        | qualquer versão recente |
 
 ### Clone e setup
 
 ```bash
 # Clone o repositório
-git clone [REPO_URL: ex: https://github.com/org/repo.git]
-cd [REPO_NAME: ex: nome-do-repo]
+git clone https://github.com/CaramaschiLevva/eden-agents.git
+cd eden-agents
 
 # Instale as dependências (npm)
 npm install
@@ -101,7 +101,7 @@ refactor/TKT-654-extrair-validacao-token
 docs/TKT-987-atualizar-contributing
 ```
 
-Branch principal: `[BRANCH_PRINCIPAL: ex: main]`
+Branch principal: `main`
 
 Nunca commite direto na branch principal. Sempre via PR.
 
@@ -182,8 +182,8 @@ Quando abrir um PR, preencha este template:
 Faça isso antes de pedir review:
 
 - [ ] CI local passou (`npm test && npm run lint && npm run typecheck`)
-- [ ] Branch atualizada com `[BRANCH_PRINCIPAL: ex: main]`
-  (`git pull --rebase origin [BRANCH_PRINCIPAL: ex: main]`)
+- [ ] Branch atualizada com `main`
+  (`git pull --rebase origin main`)
 - [ ] Commits limpos e com mensagens descritivas
 - [ ] Diff revisado por você mesmo (leia o próprio PR antes de pedir review)
 - [ ] Nenhum `console.log` de debug esquecido
@@ -191,7 +191,7 @@ Faça isso antes de pedir review:
 
 ### Quem revisar
 
-Adicione [CODEOWNERS: ex: @team-backend] como reviewer. Para mudanças em auth,
+Adicione @CaramaschiLevva como reviewer. Para mudanças em auth,
 pagamentos ou integrações externas, o review de segurança é obrigatório.
 
 ---
@@ -225,7 +225,7 @@ Antes de pedir review, o autor é responsável por:
 
 ### Critério de merge
 
-CI verde + [N_APPROVALS: ex: 1] aprovação(ões) de [CODEOWNERS: ex: @team-backend].
+CI verde + 1 aprovação(ões) de @CaramaschiLevva.
 
 Não faça merge sem CI verde. Nunca.
 
@@ -286,7 +286,7 @@ apertado, escala o problema.
 **Causa:** Diferença de versão do Node, variável de ambiente faltando no CI,
 ou teste com dependência de ordem.
 
-**Fix:** Verifique a versão do Node no CI (`[CI_URL: ex: .github/workflows/]`)
+**Fix:** Verifique a versão do Node no CI (`.github/workflows/`)
 e compare com a local. Rode `npm ci` (não `npm install`) pra simular o
 ambiente do CI.
 
@@ -303,7 +303,7 @@ trabalhava.
 
 ```bash
 git fetch origin
-git rebase origin/[BRANCH_PRINCIPAL: ex: main]
+git rebase origin/main
 # Resolva os conflitos nos arquivos marcados
 git add .
 git rebase --continue
@@ -357,11 +357,11 @@ estão verdes.
 
 - [README do projeto](./README.md) — visão geral, setup e arquitetura
 - [AGENTS.md](./AGENTS.md) — contexto para agentes de AI e automações
-- [Documentação de arquitetura](./[DOCS_URL: ex: docs/architecture.md]) —
+- [Documentação de arquitetura](./docs/architecture.md) —
   decisões técnicas e diagramas
 - [Conventional Commits](https://www.conventionalcommits.org/pt-br/) —
   especificação completa
-- [CI/CD](./[CI_URL: ex: .github/workflows/]) — pipelines e configurações
+- [CI/CD](./.github/workflows/) — pipelines e configurações
 
 ---
 

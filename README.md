@@ -1,19 +1,18 @@
-# [NOME_PROJETO: ex: ticket-api] 🎫
+# ticket-benefits-api 🎫
 
-> [DESCRICAO_PROJETO: ex: API de gestão de benefícios do Ticket Brasil]
+> API de gestão de benefícios alimentação e refeição para empresas brasileiras — produto regulado da Edenred Ticket Brasil
 
-[![CI](https://img.shields.io/github/actions/workflow/status/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]/ci.yml?branch=[BRANCH_PRINCIPAL: ex: main]&label=CI&style=flat-square)](https://github.com/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]/actions)
-[![Versão](https://img.shields.io/github/package-json/v/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]?style=flat-square)](./package.json)
-[![Node](https://img.shields.io/badge/node-%3E%3D[VERSAO_NODE: ex: 20]-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
-[![Licença](https://img.shields.io/badge/licen%C3%A7a-[LICENCA: ex: MIT]-blue?style=flat-square)](./LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/CaramaschiLevva/ticket-benefits-api/ci.yml?branch=main&label=CI&style=flat-square)](https://github.com/CaramaschiLevva/ticket-benefits-api/actions)
+[![Versão](https://img.shields.io/github/package-json/v/CaramaschiLevva/ticket-benefits-api?style=flat-square)](./package.json)
+[![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
+[![Licença](https://img.shields.io/badge/licen%C3%A7a-UNLICENSED-blue?style=flat-square)](./LICENSE)
 
 ---
 
 ## TL;DR
 
-- **O que é:** [DESCRICAO_CURTA: ex: Serviço Node/TypeScript que gerencia
-  benefícios, saldos e elegibilidade de cartões Ticket]
-- **Stack:** TypeScript · Node.js · [FRAMEWORK: ex: Express / Next.js / NestJS]
+- **O que é:** Serviço NestJS/TypeScript que gerencia benefícios, saldos e elegibilidade de cartões Ticket Restaurante e Alimentação
+- **Stack:** TypeScript · Node.js · NestJS
 - **Domínio:** Benefícios financeiros regulados — dados sensíveis, LGPD em vigor
 - **Pra rodar:** clone → instala deps → copia `.env.example` → `npm run dev`
 - **Antes de codar:** lê o [`AGENTS.md`](./AGENTS.md) (contexto pra AI) e o
@@ -23,12 +22,12 @@
 
 ## ✨ Features
 
-- 🎫 [FEATURE_1: ex: Consulta de saldo e extrato de benefícios]
-- 🔐 [FEATURE_2: ex: Autenticação e autorização de transações]
-- 👤 [FEATURE_3: ex: Gestão de elegibilidade de beneficiários]
-- 🔄 [FEATURE_4: ex: Integração com autorizador Edenred]
-- 📊 [FEATURE_5: ex: Relatórios e auditoria de uso]
-- 🧪 [FEATURE_6: ex: Suite de testes com cobertura > 80%]
+- 🎫 Consulta de saldo e extrato de benefícios em tempo real
+- 🔐 Autenticação e autorização integrada com Keycloak
+- 👤 Gestão de elegibilidade de beneficiários
+- 🔄 Integração com autorizador Edenred
+- 📊 Relatórios e auditoria de uso
+- 🧪 Suite de testes com cobertura > 80%
 
 ---
 
@@ -36,9 +35,9 @@
 
 | Ferramenta | Versão mínima | Notas |
 |---|---|---|
-| Node.js | `>= [VERSAO_NODE: ex: 20]` | Recomendado via [nvm](https://github.com/nvm-sh/nvm) |
+| Node.js | `>= 20` | Recomendado via [nvm](https://github.com/nvm-sh/nvm) |
 | npm | `>= 9` | ou pnpm `>= 8` |
-| [BANCO_DADOS: ex: PostgreSQL] | `>= [VERSAO_BD: ex: 15]` | ou via Docker Compose |
+| PostgreSQL | `>= 15` | ou via Docker Compose |
 | Docker | `>= 24` | Opcional, mas recomendado pra infra local |
 
 > **Note**
@@ -53,8 +52,8 @@ Bora lá. Menos de 5 minutos do zero ao servidor rodando.
 ### 1. Clone o repositório
 
 ```bash
-git clone [URL_REPO: ex: https://github.com/edenred/ticket-api]
-cd [NOME_PROJETO: ex: ticket-api]
+git clone https://github.com/CaramaschiLevva/eden-agents.git
+cd ticket-benefits-api
 ```
 
 ### 2. Instale as dependências
@@ -91,18 +90,18 @@ docker compose up -d
 npm run dev
 ```
 
-Tá na mão. O servidor sobe em `http://localhost:[PORTA: ex: 3000]`.
+Tá na mão. O servidor sobe em `http://localhost:3000`.
 
 ---
 
 ## 📁 Estrutura do Projeto
 
 ```text
-[NOME_PROJETO: ex: ticket-api]/
+ticket-benefits-api/
 ├── src/
-│   ├── [MODULO_1: ex: auth]/          # Autenticação e autorização
-│   ├── [MODULO_2: ex: benefits]/      # Lógica de negócio de benefícios
-│   ├── [MODULO_3: ex: transactions]/  # Processamento de transações
+│   ├── auth/          # Autenticação e autorização
+│   ├── benefits/      # Lógica de negócio de benefícios
+│   ├── transactions/  # Processamento de transações
 │   ├── shared/                        # Utilitários, tipos e helpers compartilhados
 │   └── main.ts                        # Entry point da aplicação
 ├── tests/
@@ -137,7 +136,7 @@ Tá na mão. O servidor sobe em `http://localhost:[PORTA: ex: 3000]`.
 | `npm run lint` | Checa estilo e erros com ESLint | CI e pré-commit |
 | `npm run lint:fix` | Corrige erros de lint automaticamente | Antes de commitar |
 | `npm run typecheck` | Valida tipos sem compilar | Checar erros de tipo rapidinho |
-| `npm run [SCRIPT_EXTRA: ex: db:migrate]` | [DESCRICAO_SCRIPT: ex: Roda migrations do banco] | [QUANDO_USAR: ex: Após pull com novas migrations] |
+| `npm run db:migrate` | Roda migrations pendentes do banco de dados | Após pull com novas migrations |
 
 ---
 
@@ -153,8 +152,7 @@ Este projeto opera em domínio financeiro regulado. Leva isso a sério.
 **Regras inegociáveis:**
 
 - **Secrets:** nunca commita `.env` real, tokens, certificados ou chaves de API.
-  Usa variáveis de ambiente ou um vault ([VAULT: ex: AWS Secrets Manager /
-  HashiCorp Vault])
+  Usa variáveis de ambiente ou um vault (AWS Secrets Manager)
 - **PII/LGPD:** CPF, nome completo, endereço, dados bancários e qualquer dado
   pessoal não podem aparecer em logs, testes, fixtures, screenshots ou
   comentários de código
@@ -221,4 +219,4 @@ não gerar código que viola as regras do domínio.
 
 ## 📄 License
 
-[LICENCA: ex: MIT] — veja o arquivo [LICENSE](./LICENSE) para detalhes.
+UNLICENSED — veja o arquivo [LICENSE](./LICENSE) para detalhes.

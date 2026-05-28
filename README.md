@@ -2,7 +2,7 @@
 
 > [DESCRICAO_PROJETO: ex: API de gestão de benefícios do Ticket Brasil]
 
-[![CI](https://img.shields.io/github/actions/workflow/status/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]/ci.yml?branch=[BRANCH_PRINCIPAL: ex: main]&label=CI&style=flat-square)](https://github.com/[ORG_GITHUB]/[NOME_PROJETO]/actions)
+[![CI](https://img.shields.io/github/actions/workflow/status/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]/ci.yml?branch=[BRANCH_PRINCIPAL: ex: main]&label=CI&style=flat-square)](https://github.com/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]/actions)
 [![Versão](https://img.shields.io/github/package-json/v/[ORG_GITHUB: ex: edenred]/[NOME_PROJETO: ex: ticket-api]?style=flat-square)](./package.json)
 [![Node](https://img.shields.io/badge/node-%3E%3D[VERSAO_NODE: ex: 20]-brightgreen?style=flat-square&logo=node.js)](https://nodejs.org)
 [![Licença](https://img.shields.io/badge/licen%C3%A7a-[LICENCA: ex: MIT]-blue?style=flat-square)](./LICENSE)

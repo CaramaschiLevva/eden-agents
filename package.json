@@ -1,0 +1,9 @@
+{
+  "name": "edenred-docs",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "markdownlint-cli2": "^0.17.0",
+    "markdown-link-check": "^3.13.0"
+  }
+}
